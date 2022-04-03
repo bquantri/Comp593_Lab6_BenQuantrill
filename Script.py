@@ -35,10 +35,9 @@ def post_to_pastebin(title, body_text):
 
 def get_pastebin_strings(user_dict):
 
-
-    title = user_dict["name"]
-    for body_text in user_dict["abilities"]:
-       print(body_text['ability']['name'])
+    title = user_dict['name'] + "'s Geographical Location"
+    body_text = "Latitude: " + user_dict['address']['geo']['lat'] + "\n"
+    body_text += "Longitude: " + user_dict['address']['geo']['lng']
     return (title, body_text)
 
 
@@ -47,7 +46,7 @@ def get_pastebin_strings(user_dict):
 
 def get_user_info(user_num):
     print("getting user information...", end="")
-    response = requests.get("https://pokeapi.co/api/v2/pokemon/" + user_num)
+    response = requests.get("https://jsonplaceholder.typicode.com/users/" + user_num)
 
     if response.status_code == 200:
         print("congrations!")
