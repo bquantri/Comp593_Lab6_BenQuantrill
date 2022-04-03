@@ -1,11 +1,11 @@
 #-----------------------------------------
-# File:
+# File: Comp593_Lab6_BenQuantrill.py
 # Author: Ben Quantrill
 # Date: 2022/04/02
 # Course: Comp593 - Scripting Applications
 # Description: A script using the requests
 #              module to get ability info from PokeApi and post to Pastebin
-# Usage: Python .py [PokemonName]
+# Usage: Python Comp593_Lab6_BenQuantrill.py [PokemonName]
 # History: 2022/03/30 (initial creation)
 #
 
@@ -14,6 +14,8 @@ from turtle import title
 import requests
 from sys import argv
 
+
+#main function collects other functions and iterates at the end
 def main():
 
     poke_num = argv[1]
@@ -25,7 +27,7 @@ def main():
         print(pastebin_url)
 
 
-
+#function to post received data from pokemon into Pastebin
 def post_pastebin_message(title, body_text):
     print("Posting message to PasteBin...", end="")\
 
@@ -46,7 +48,7 @@ def post_pastebin_message(title, body_text):
         return response.status_code
 
 
-
+#function to gather pokemon name and ability data from get_poke_info function
 def get_pastebin_message(poke_dict):
 
     title = poke_dict["name"]
@@ -54,7 +56,7 @@ def get_pastebin_message(poke_dict):
        print(body_text['ability']['name'])
     return (title, body_text)
 
-    
+#connects to PokeAPI    
 def get_poke_info(poke_num):
     print("Getting Desired Pokemon abilities...", end="")
     response = requests.get("https://pokeapi.co/api/v2/pokemon/" + poke_num)
